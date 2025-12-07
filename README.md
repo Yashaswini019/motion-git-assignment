@@ -12,4 +12,4 @@ your knowledge of Git commands, basic workflow, and how to collaborate using Git
 
 ## From feature-update
 
-This is from feature-update branch
+This is from feature-update branch for the assignment
