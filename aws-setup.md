@@ -79,7 +79,7 @@ Use the **Public IPv4 address** from the EC2 dashboard:
 ```bash
 ssh -i mykey.pem ec2-user@<EC2_PUBLIC_IP>
 ```
-
+Key should be available from the preious step.
 You are now logged into the EC2 VM.
 
 ---

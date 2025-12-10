@@ -87,4 +87,8 @@ echo -e "a=10\nb=20\nprint('Sum =', a+b)" > add_numbers.py
 python3 add_numbers.py
 ```
 
+Expected Output:
 
+```bash
+Sum =30
+```

@@ -1,7 +1,7 @@
 Steps to 
 
 1. **Create an Azure Account**
-2. **Set up a basic Amazon vm**
+2. **Set up a basic Azure vm**
 3. **Deploy a sample Python script (e.g., adds two numbers)**
 
 # **1. Create an Azure Account**
