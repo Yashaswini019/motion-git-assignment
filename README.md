@@ -1,15 +1,22 @@
-Motion Recruitment is a leading staffing agency specializing in connecting top tech talent with
-innovative companies. With years of experience in the technology recruitment space, Motion
-Recruitment focuses on understanding both client and candidate needs to create successful
-matches. Our commitment to quality service and deep industry expertise enables us to deliver
-tailored solutions for various technology roles, ensuring that businesses have the right talent to
-drive their success.
+# Final CI Documentation
 
-## Task Information
-- As a new member of the DevOps team at Motion Recruitment, you are tasked with
-demonstrating your understanding of Git fundamentals and GitHub. This assignment will test
-your knowledge of Git commands, basic workflow, and how to collaborate using GitHub.
+This repository contains the Continuous Integration (CI) pipeline setups for AWS, Azure, and GCP.  
 
-## From feature-update
+## Branch Structure
+- `main` - Contains finalized CI documentation.
+- `final-integration` - Consolidated CI doc for all clouds.
+- `feature-final-ci-review` - Used for final review before merging to main.
 
-This is from feature-update branch for the assignment
+## How to Use
+1. Refer to `CI-Integration.md` for detailed CI steps per cloud.
+2. Each section includes:
+   - Build
+   - Test
+   - Deploy
+   - Notes on credentials and configuration
+3. Use this repository as a reference for multi-cloud CI setup and verification.
+
+## Notes
+- Ensure you have proper credentials for AWS, Azure, and GCP before running any pipelines.
+- Test each CI pipeline individually before integrating into production.
+- Follow naming conventions and environment variable standards consistently.
