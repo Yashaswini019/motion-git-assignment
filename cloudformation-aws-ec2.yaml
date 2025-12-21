@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFormation template to create a basic EC2 instance
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c02fb55956c7d316   # Amazon Linux 2 AMI (us-east-1)
+      Tags:
+        - Key: Name
+          Value: CloudFormation-EC2
