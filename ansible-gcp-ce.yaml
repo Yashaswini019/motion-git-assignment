@@ -1,0 +1,38 @@
+---
+- name: Provision a Google Compute Engine instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    instance_name: ansible-gce-demo
+    machine_type: n1-standard-1
+    image_family: debian-11
+    image_project: debian-cloud
+    network: default
+    zone: "{{ lookup('env', 'GCP_ZONE') }}"
+    project: "{{ lookup('env', 'GCP_PROJECT') }}"
+    service_account_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+
+  tasks:
+    - name: Create GCE instance
+      google.cloud.gcp_compute_instance:
+        name: "{{ instance_name }}"
+        machine_type: "{{ machine_type }}"
+        disks:
+          - auto_delete: true
+            boot: true
+            initialize_params:
+              source_image: "projects/{{ image_project }}/global/images/family/{{ image_family }}"
+        network_interfaces:
+          - network: "{{ network }}"
+            access_configs:
+              - name: External NAT
+                type: ONE_TO_ONE_NAT
+        project: "{{ project }}"
+        zone: "{{ zone }}"
+        service_account_file: "{{ service_account_file }}"
+      register: gce_instance
+
+    - name: Display the instance info
+      debug:
+        var: gce_instance
