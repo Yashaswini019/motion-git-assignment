@@ -1,0 +1,194 @@
+# Kubernetes Resource Setup on Cloud Platforms
+
+## Overview
+
+Cloud providers offer managed Kubernetes services that simplify cluster creation and management. This document outlines the high-level steps required to create and manage Kubernetes **Pods, Deployments, Services, Ingress, ConfigMaps, and Secrets** using AWS EKS, Azure AKS, and Google GKE.
+
+---
+
+## AWS: Elastic Kubernetes Service (EKS)
+
+### Overview
+
+Amazon Elastic Kubernetes Service (EKS) is a fully managed Kubernetes service that handles the control plane while allowing users to deploy and manage workloads using standard Kubernetes tools.
+
+---
+
+### Steps to Set Up Pods and Services in EKS
+
+#### 1. Create an EKS Cluster
+
+* Use the AWS Management Console, AWS CLI, or Infrastructure as Code tools
+* Configure:
+
+  * Cluster name
+  * Region
+  * Node group (EC2 or managed nodes)
+
+#### 2. Configure kubectl Access
+
+* Update kubeconfig to connect to the EKS cluster:
+
+```bash
+aws eks update-kubeconfig --region us-east-1 --name my-cluster
+```
+
+#### 3. Create Pods
+
+Pods can be created using kubectl commands or YAML manifests.
+
+Example command:
+
+```bash
+kubectl run my-pod --image=nginx
+```
+
+#### 4. Create Services
+
+Services expose Pods within or outside the cluster.
+
+Example Service (LoadBalancer type):
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - port: 80
+      targetPort: 8080
+```
+
+AWS automatically provisions an Elastic Load Balancer when a LoadBalancer Service is created.
+
+---
+
+## Azure: Azure Kubernetes Service (AKS)
+
+### Overview
+
+Azure Kubernetes Service (AKS) simplifies Kubernetes cluster deployment and integrates tightly with Azure networking and security services.
+
+---
+
+### Steps to Create Deployments and Ingress in AKS
+
+#### 1. Create an AKS Cluster
+
+* Use the Azure Portal, Azure CLI, or ARM templates
+* Define:
+
+  * Resource group
+  * Node size and count
+  * Networking configuration
+
+#### 2. Connect to the Cluster
+
+```bash
+az aks get-credentials --resource-group my-rg --name my-aks-cluster
+```
+
+#### 3. Create Deployments
+
+Deployments manage Pods and enable scaling and rolling updates.
+
+Example command:
+
+```bash
+kubectl create deployment my-deployment --image=nginx
+```
+
+#### 4. Enable and Configure Ingress
+
+* Install an Ingress Controller (e.g., NGINX or Azure Application Gateway)
+* Define Ingress rules to manage external traffic
+
+Example Ingress configuration:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+    - host: my-app.azurewebsites.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-service
+                port:
+                  number: 80
+```
+
+Ingress provides a centralized entry point for HTTP/HTTPS traffic.
+
+---
+
+## GCP: Google Kubernetes Engine (GKE)
+
+### Overview
+
+Google Kubernetes Engine (GKE) is a managed Kubernetes service that offers deep integration with Google Cloud services and built-in scalability.
+
+---
+
+### Steps to Manage ConfigMaps and Secrets in GKE
+
+#### 1. Create a GKE Cluster
+
+* Use Google Cloud Console or gcloud CLI
+* Configure:
+
+  * Cluster name
+  * Region or zone
+  * Node pool settings
+
+#### 2. Authenticate kubectl
+
+```bash
+gcloud container clusters get-credentials my-gke-cluster --region us-central1
+```
+
+#### 3. Create ConfigMaps
+
+ConfigMaps store non-sensitive configuration data.
+
+Example command:
+
+```bash
+kubectl create configmap app-config --from-literal=ENV=production
+```
+
+#### 4. Create Secrets
+
+Secrets store sensitive data securely.
+
+Example command:
+
+```bash
+kubectl create secret generic app-secret --from-literal=apiKey=securekey
+```
+
+#### 5. Use ConfigMaps and Secrets in Pods
+
+* Inject as environment variables
+* Mount as configuration files inside containers
+
+GKE automatically handles secure storage and access control for these resources.
+
+---
+
+## Summary
+
+* **AWS EKS** simplifies the creation of Pods and Services with built-in load balancer integration.
+* **Azure AKS** provides seamless management of Deployments and Ingress resources.
+* **Google GKE** offers robust tools for managing ConfigMaps and Secrets.
+* All platforms use standard Kubernetes APIs and kubectl commands.
