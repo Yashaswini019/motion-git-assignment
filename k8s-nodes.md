@@ -88,3 +88,25 @@ Common container runtimes:
 * The **master node** controls and coordinates the cluster
 * **Worker nodes** execute application containers
 * Together, they ensure high availability, scalability, and reliability in Kubernetes
+
+
+## Kubernetes Cluster Architecture
+
+                +----------------------+
+                |      Master Node     |
+                |----------------------|
+                |  API Server          |
+                |  Scheduler           |
+                |  Controller Manager |
+                |  etcd                |
+                +----------+-----------+
+                           |
+          -----------------------------------------
+          |                    |                 |
++----------------+   +----------------+   +----------------+
+|  Worker Node 1 |   |  Worker Node 2 |   |  Worker Node 3 |
+|----------------|   |----------------|   |----------------|
+| Kubelet        |   | Kubelet        |   | Kubelet        |
+| Kube Proxy     |   | Kube Proxy     |   | Kube Proxy     |
+| Containers     |   | Containers     |   | Containers     |
++----------------+   +----------------+   +----------------+
