@@ -1,0 +1,108 @@
+# Cloud Services Documentation – Final Review
+
+This document provides comprehensive documentation of cloud services across AWS, Azure, and Google Cloud Platform (GCP), including compute, storage, database services, and command-line tools. This serves as a single reference for DevOps engineers and cloud administrators.
+
+---
+
+## 1. Compute Services
+
+### AWS
+- **EC2 (Elastic Compute Cloud):** Provides scalable virtual servers in the cloud.
+- **Lambda:** Serverless compute service for running code without provisioning servers.
+- **ECS/EKS:** Container orchestration using Docker and Kubernetes.
+
+### Azure
+- **Virtual Machines (VMs):** On-demand scalable compute resources.
+- **Azure Functions:** Serverless compute service.
+- **AKS (Azure Kubernetes Service):** Managed Kubernetes container orchestration.
+
+### GCP
+- **Compute Engine:** Scalable virtual machines.
+- **Cloud Functions:** Serverless compute service.
+- **GKE (Google Kubernetes Engine):** Managed Kubernetes service.
+
+---
+
+## 2. Storage Services
+
+### AWS
+- **S3 (Simple Storage Service):** Object storage with high durability.
+- **EBS (Elastic Block Store):** Persistent block storage for EC2 instances.
+- **Glacier:** Low-cost archival storage.
+
+### Azure
+- **Blob Storage:** Object storage for unstructured data.
+- **Disk Storage:** Persistent disks for VMs.
+- **File Storage:** Managed file shares.
+
+### GCP
+- **Cloud Storage:** Object storage for unstructured data.
+- **Persistent Disk:** Block storage for Compute Engine VMs.
+- **Filestore:** Managed file storage.
+
+---
+
+## 3. Database Services
+
+### AWS
+- **RDS (Relational Database Service):** Managed relational databases (MySQL, PostgreSQL, etc.).
+- **DynamoDB:** Fully managed NoSQL database.
+- **Aurora:** High-performance relational database compatible with MySQL/PostgreSQL.
+
+### Azure
+- **Azure SQL Database:** Managed relational database.
+- **Cosmos DB:** Globally distributed NoSQL database.
+- **Azure Database for PostgreSQL/MySQL:** Managed relational services.
+
+### GCP
+- **Cloud SQL:** Managed MySQL, PostgreSQL, and SQL Server databases.
+- **Firestore:** NoSQL document database.
+- **Cloud Spanner:** Globally distributed relational database.
+
+---
+
+## 4. Cloud Command-Line Tools
+
+### AWS CLI
+**Overview:** Unified CLI to manage AWS services.  
+**Installation:**  
+```bash
+aws configure
+
+## Common Commands:
+
+aws ec2 describe-instances
+aws s3 ls
+aws s3 cp file.txt s3://bucket-name/
+
+# Azure CLI
+
+Overview: Cross-platform CLI to manage Azure resources.
+Login:
+
+az login
+
+
+# Common Commands:
+
+az vm list
+az group list
+az storage account list
+az vm start --name <vm-name> --resource-group <resource-group>
+
+# Google Cloud SDK (gcloud)
+
+Overview: CLI to manage GCP services.
+Initialization:
+
+gcloud init
+
+
+# Common Commands:
+
+gcloud compute instances list
+gcloud storage buckets list
+
+## Conclusion
+
+AWS, Azure, and GCP provide a wide range of compute, storage, and database services along with powerful command-line tools. This documentation consolidates these services and tools to enable efficient cloud infrastructure management, automation, and DevOps practices.
